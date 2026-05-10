@@ -15,7 +15,7 @@ Use it to preserve a few core outcomes:
 
 - the skill should be easy to trigger correctly
 - the hot path should stay focused on high-frequency runtime guidance
-- when the user explicitly wants multi-file or maintenance-surface expansion, low-frequency detail should be routable instead of crowding the main file
+- when the user explicitly wants the skill to expand into more files or into more surfaces that must be maintained over time, low-frequency detail should be routable instead of crowding the main file
 - `AGENTS.md` can behave like an index-bearing control surface when needed and when the user wants that shape
 - repeated drift, scan cost, or ambiguity should lead to structural-tightening recommendations instead of more loose prose
 
