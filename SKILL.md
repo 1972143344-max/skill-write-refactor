@@ -111,7 +111,7 @@ Use or update local `AGENTS.md` only when at least one of these is true:
 - the user explicitly wants `AGENTS.md` created, changed, or kept in sync
 - the skill directory already has a local `AGENTS.md` that serves as a routing/index surface and would become stale if the skill structure changes
 - the user explicitly wants an index-bearing control surface for a multi-file skill
-- some routing or operating guidance needs to be used frequently even when the skill itself is not explicitly invoked
+- some high-frequency routing rules or execution rules need to be used frequently even when the skill itself is not explicitly invoked
 
 If none of those are true, you may recommend a local `AGENTS.md`, but do not create or modify it by default.
 
