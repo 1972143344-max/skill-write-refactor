@@ -1,6 +1,6 @@
 ---
 name: skill-write-refactor
-description: Write or refactor Codex skills with focused content, routing-first structure, and maintenance-aware splits. Use when creating a new skill or tightening an existing one; rewriting SKILL.md frontmatter or trigger text; separating high-frequency operational guidance from low-frequency references; adding read-when/skip-when routing; designing AGENTS.md as an index for a growing skill document set; co-locating hard rules with soft preferences; or reducing skill bloat while preserving necessary repetition for binding.
+description: Write or refactor Codex skills with focused content, routing-first structure, and maintenance-aware splits. Use when creating a new skill or tightening an existing one; rewriting SKILL.md frontmatter or trigger text; separating high-frequency operational guidance from low-frequency references; adding read-when/skip-when routing; evaluating whether AGENTS.md should act as an index for a growing skill document set; co-locating hard rules with soft preferences; or reducing skill bloat while preserving necessary repetition for binding.
 ---
 
 # Skill Write Refactor
@@ -16,7 +16,7 @@ Use it to preserve a few core outcomes:
 - the skill should be easy to trigger correctly
 - the hot path should stay focused on high-frequency runtime guidance
 - low-frequency detail should be routed instead of crowding the main file
-- `AGENTS.md` should behave like an index-bearing control surface when needed
+- `AGENTS.md` can behave like an index-bearing control surface when needed
 - repeated drift, scan cost, or ambiguity should lead to structural tightening instead of more loose prose
 
 If a skill edit only changes wording but makes the design purpose less legible, the refactor is incomplete.
@@ -102,7 +102,17 @@ Use `assets/` only for output artifacts or templates, not for extra prose.
 
 ## Use AGENTS As An Index
 
-When a skill grows beyond a single hot document, use a local `AGENTS.md` as a routing index, not as a second full procedure.
+Treat local `AGENTS.md` as an optional routing surface, not a default edit target.
+
+Use or update local `AGENTS.md` only when at least one of these is true:
+
+- the user explicitly wants `AGENTS.md` created, changed, or kept in sync
+- the skill directory already has a local `AGENTS.md` that would drift if the routing structure changes
+- the user explicitly wants an index-bearing control surface for a multi-file skill
+
+If none of those are true, you may recommend a local `AGENTS.md`, but do not create or modify it by default.
+
+When a skill grows beyond a single hot document and `AGENTS.md` is in play, use a local `AGENTS.md` as a routing index, not as a second full procedure.
 
 Use local `AGENTS.md` to:
 - declare the authoritative files
@@ -116,6 +126,7 @@ Do not use local `AGENTS.md` to:
 - replace the frontmatter trigger surface
 
 If the skill stays small and single-file, skip local `AGENTS.md`.
+If the user did not ask for `AGENTS.md` work and no local `AGENTS.md` exists yet, skip it by default and keep the refactor focused on the skill files themselves.
 
 ## Add Read-When / Skip-When Routing
 
@@ -189,7 +200,7 @@ Do not split early just because a split is possible. Split when maintenance pres
 
 Useful thresholds:
 - create `references/` when low-frequency detail is large enough that it obscures the hot path or when three or more distinct cold branches exist
-- add local `AGENTS.md` when multiple files now need stable read order or routing
+- if multiple files now need stable read order or routing, consider recommending local `AGENTS.md`; create or modify it only when the user asked for that surface or when an existing local `AGENTS.md` must be kept in sync
 - extract a `script/` when you have rewritten the same helper more than once or need deterministic behavior
 - refresh `agents/openai.yaml` whenever `SKILL.md` changes the scope, tone, or trigger wording
 - prune or merge files when a reference is rarely needed and no longer earns its cognitive overhead
@@ -203,10 +214,11 @@ Favor evidence over fixed counts. If the same confusion, drift, or scan cost app
 3. Mark the hot-path content that must remain in `SKILL.md`.
 4. Mark colder detail that can move outward or be deleted.
 5. Add or sharpen read-when/skip-when routing.
-6. Check that each critical block includes method, concrete action, and scope boundary instead of only abstract guidance.
-7. Co-locate hard rules and soft preferences near the decisions they govern.
-8. Keep only deliberate repetition.
-9. Validate the folder.
+6. Decide whether `AGENTS.md` is in scope for this refactor; if not explicitly requested and not already present, do not add it by default.
+7. Check that each critical block includes method, concrete action, and scope boundary instead of only abstract guidance.
+8. Co-locate hard rules and soft preferences near the decisions they govern.
+9. Keep only deliberate repetition.
+10. Validate the folder.
 
 ## Validate
 
