@@ -1,11 +1,11 @@
 ---
 name: skill-write-refactor
-description: Write or refactor Codex skills with focused content, routing-first structure, and maintenance-aware splits. Use when creating a new skill or tightening an existing one; rewriting SKILL.md frontmatter or trigger text; separating high-frequency operational guidance from low-frequency references; adding read-when/skip-when routing; evaluating whether AGENTS.md should act as an index for a growing skill document set; co-locating hard rules with soft preferences; or reducing skill bloat while preserving necessary repetition for binding.
+description: Write or refactor Codex skills with focused content, routing-first structure, and maintenance-aware splits. Use when creating a new skill or tightening an existing one; rewriting SKILL.md frontmatter or trigger text; evaluating whether some low-frequency material should be routed outside the hot path; adding read-when/skip-when routing; evaluating whether AGENTS.md should act as an index for a growing skill document set; co-locating hard rules with soft preferences; or reducing skill bloat while preserving necessary repetition for binding.
 ---
 
 # Skill Write Refactor
 
-Write skills that stay easy to trigger, easy to route, and cheap to load. Keep `SKILL.md` on the hot path and add more files only when frequency, branching, or maintenance pressure justifies them.
+Write skills that stay easy to trigger, easy to route, and cheap to load. Keep `SKILL.md` on the hot path. If expanding the file set or maintenance surface seems useful, treat that as an optional structural expansion pattern unless the user already asked for that restructuring.
 
 ## Why This Skill Exists
 
@@ -34,7 +34,7 @@ If a skill edit only changes wording but makes the design purpose less legible, 
    - main workflow
    - read-when/skip-when routing
    - hard constraints and adjacent soft preferences
-4. Split out low-frequency detail only when it makes the main skill easier to scan, trigger, or maintain.
+4. If low-frequency detail appears better routed outside `SKILL.md`, treat that as a candidate structural expansion pattern and recommend it unless the user already asked for that kind of restructuring.
 5. Validate the folder after edits and refresh `agents/openai.yaml` if the UI metadata drifted.
 
 ## Route The Work
@@ -42,14 +42,14 @@ If a skill edit only changes wording but makes the design purpose less legible, 
 ### New Skill
 
 - Start from the trigger surface first. Write the frontmatter description before the body so the invocation boundary is explicit.
-- Keep the first version single-file unless the task already has obvious low-frequency branches or reusable scripts.
+- Keep the first version single-file unless the user explicitly wants a broader multi-file shape from the start.
 
 ### Existing Skill Refactor
 
 - Preserve the skill name unless scope has materially changed.
 - Keep the current trigger behavior unless there is a concrete reason to sharpen or narrow it.
 - Remove template prose, dead references, and repeated exposition before inventing new structure.
-- Move detail outward only after deciding what must stay hot in `SKILL.md`.
+- Move detail outward only after deciding what must stay hot in `SKILL.md`; if that would introduce new files or a broader maintenance surface, treat it as an optional structural expansion pattern and recommend it first unless the user already asked for that restructuring.
 
 ## Preserve User Intent
 
@@ -67,6 +67,20 @@ Examples include:
 - deciding on your own which rules should be lifted into local `AGENTS.md`
 
 Surface those as concrete suggestions to the user first, then let the user decide whether they belong in the skill.
+
+## Optional Structural Expansion Patterns
+
+Some refactor moves do more than tighten wording or clarify existing structure. They expand the skill's file topology or future maintenance surface.
+
+Treat those as optional structural expansion patterns, not default rewrite actions.
+
+Examples include:
+- splitting low-frequency detail into new reference files
+- introducing reusable helper scripts
+- adding or expanding local `AGENTS.md` as a routing surface
+- adding maintenance-threshold rules or similar ongoing maintenance mechanisms
+
+Unless the user explicitly asked for this kind of structural expansion, or an existing surface must be kept in sync, present these as recommendations first instead of landing them by default.
 
 ## Keep Content Focused
 
@@ -107,6 +121,8 @@ Keep in `SKILL.md`:
 - invariants, edge-condition checks, and compact examples
 - the minimum context needed to choose the right branch
 
+If you are considering moving content into new `references/` files, treat that as an optional structural expansion pattern unless the user already asked for that restructuring or the existing reference surface must be kept in sync.
+
 Move to `references/` only when the content is real but colder:
 - variant-specific guidance
 - detailed examples
@@ -114,7 +130,7 @@ Move to `references/` only when the content is real but colder:
 - background theory
 - large checklists that are not needed on every invocation
 
-Use `scripts/` when the same deterministic helper would otherwise be rewritten repeatedly.
+Use `scripts/` only when the user asked for that kind of reusable helper extraction, or when an existing script surface must be kept in sync. Otherwise, recommend it as an optional structural expansion pattern.
 Use `assets/` only for output artifacts or templates, not for extra prose.
 
 ## Use AGENTS As An Index
@@ -226,12 +242,11 @@ Do not add maintenance-threshold rules as a default refactor action.
 
 Do not split early just because a split is possible. Split when maintenance pressure is real.
 
-Useful thresholds:
-- create `references/` when low-frequency detail is large enough that it obscures the hot path or when three or more distinct cold branches exist
-- if multiple files now need stable read order or routing, consider recommending local `AGENTS.md`; create or modify it only when the user asked for that surface or when an existing local `AGENTS.md` must be kept in sync
-- extract a `script/` when you have rewritten the same helper more than once or need deterministic behavior
-- refresh `agents/openai.yaml` whenever `SKILL.md` changes the scope, tone, or trigger wording
-- prune or merge files when a reference is rarely needed and no longer earns its cognitive overhead
+If the user wants this pattern, useful threshold design ideas include:
+- add a threshold only when the skill truly maintains a document surface, index surface, or routing surface that will keep growing over time
+- define thresholds in terms of routing noise, stale-read pressure, document sprawl, or repeated maintenance pain, not just raw size
+- recommend semantic splits, second-level routing, or surface-specific maintenance blocks only after showing the user why the current surface has become noisy
+- keep approved threshold rules localized to the specific expanding surface instead of spreading them across unrelated skill files
 
 Favor evidence over fixed counts. If the same confusion, drift, or scan cost appears repeatedly, the structure is too loose.
 
@@ -243,7 +258,7 @@ Favor evidence over fixed counts. If the same confusion, drift, or scan cost app
 4. Mark colder detail that can move outward or be deleted.
 5. Add or sharpen read-when/skip-when routing.
 6. Decide whether `AGENTS.md` is in scope for this refactor; if not explicitly requested and not already present, do not add it by default.
-7. If you identified candidate lifted rules or candidate maintenance-threshold patterns, present them to the user instead of landing them unilaterally.
+7. If you identified candidate structural expansion patterns, candidate lifted rules, or candidate maintenance-threshold patterns, present them to the user instead of landing them unilaterally.
 8. Check that each critical block includes method, concrete action, and scope boundary instead of only abstract guidance.
 9. Co-locate hard rules and soft preferences near the decisions they govern.
 10. Keep only deliberate repetition.
