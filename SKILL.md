@@ -51,6 +51,23 @@ If a skill edit only changes wording but makes the design purpose less legible, 
 - Remove template prose, dead references, and repeated exposition before inventing new structure.
 - Move detail outward only after deciding what must stay hot in `SKILL.md`.
 
+## Preserve User Intent
+
+One of the general boundary constraints of this skill is: default to improving wording, structure, routing clarity, focus, and boundary expression; treat any new governance mechanism as a user-facing suggestion first, not an automatic refactor action.
+
+This skill's default job is to improve wording, structure, routing clarity, focus, and boundary expression.
+
+It is not the default job of this skill to inject new governance mechanisms into the user's skill.
+
+If you are considering any new mechanism that could materially change future run behavior, reading behavior, or maintenance behavior, do not land it unilaterally.
+
+Examples include:
+- introducing maintenance-threshold rules
+- introducing new routing-control surfaces
+- deciding on your own which rules should be lifted into local `AGENTS.md`
+
+Surface those as concrete suggestions to the user first, then let the user decide whether they belong in the skill.
+
 ## Keep Content Focused
 
 - Keep `SKILL.md` biased toward actions the skill should help with often.
@@ -111,9 +128,10 @@ Use or update local `AGENTS.md` only when at least one of these is true:
 - the user explicitly wants `AGENTS.md` created, changed, or kept in sync
 - the skill directory already has a local `AGENTS.md` that serves as a routing/index surface and would become stale if the skill structure changes
 - the user explicitly wants an index-bearing control surface for a multi-file skill
-- some high-frequency routing rules or execution rules need to be used frequently even when the skill itself is not explicitly invoked
 
 If none of those are true, you may recommend a local `AGENTS.md`, but do not create or modify it by default.
+
+If you identify candidate high-frequency routing rules or execution rules that might deserve lifting into local `AGENTS.md`, do not decide that unilaterally. Surface them to the user as candidates and let the user decide whether they should be lifted.
 
 When a skill grows beyond a single hot document and `AGENTS.md` is in play, use a local `AGENTS.md` as a routing index, not as a second full procedure.
 
@@ -198,7 +216,13 @@ Place trigger-style reminders where they are most likely to pay off:
 
 Do not scatter trigger language everywhere. Put it where attention is likely to decay and where one short reminder can redirect the next action.
 
-## Use Maintenance Thresholds
+## Optional Pattern: Maintenance Thresholds For Expanding Document Surfaces
+
+This is a structural suggestion for skills that themselves maintain a growing document surface, index surface, or routing surface over time.
+
+Recommend this pattern to the user when the skill itself needs to maintain a continuously expanding set of documents, indexes, or routing surfaces, such as relationship-map-maintenance-style workflows.
+
+Do not add maintenance-threshold rules as a default refactor action.
 
 Do not split early just because a split is possible. Split when maintenance pressure is real.
 
@@ -219,10 +243,11 @@ Favor evidence over fixed counts. If the same confusion, drift, or scan cost app
 4. Mark colder detail that can move outward or be deleted.
 5. Add or sharpen read-when/skip-when routing.
 6. Decide whether `AGENTS.md` is in scope for this refactor; if not explicitly requested and not already present, do not add it by default.
-7. Check that each critical block includes method, concrete action, and scope boundary instead of only abstract guidance.
-8. Co-locate hard rules and soft preferences near the decisions they govern.
-9. Keep only deliberate repetition.
-10. Validate the folder.
+7. If you identified candidate lifted rules or candidate maintenance-threshold patterns, present them to the user instead of landing them unilaterally.
+8. Check that each critical block includes method, concrete action, and scope boundary instead of only abstract guidance.
+9. Co-locate hard rules and soft preferences near the decisions they govern.
+10. Keep only deliberate repetition.
+11. Validate the folder.
 
 ## Validate
 
