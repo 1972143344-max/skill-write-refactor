@@ -15,27 +15,31 @@ Use it to preserve a few core outcomes:
 
 - the skill should be easy to trigger correctly
 - the hot path should stay focused on high-frequency runtime guidance
-- low-frequency detail should be routed instead of crowding the main file
-- `AGENTS.md` can behave like an index-bearing control surface when needed
-- repeated drift, scan cost, or ambiguity should lead to structural tightening instead of more loose prose
+- when the user explicitly wants multi-file or maintenance-surface expansion, low-frequency detail should be routable instead of crowding the main file
+- `AGENTS.md` can behave like an index-bearing control surface when needed and when the user wants that shape
+- repeated drift, scan cost, or ambiguity should lead to structural-tightening recommendations instead of more loose prose
 
 If a skill edit only changes wording but makes the design purpose less legible, the refactor is incomplete.
 
 ## Quick Start
 
-1. Classify the work: new skill, existing-skill refactor, or narrow metadata repair.
+1. Classify the work:
+   - new skill
+   - existing-skill refactor
+   - metadata-only repair when the request is only about frontmatter or `agents/openai.yaml` alignment
 2. Read the current authorities in order:
    - applicable `AGENTS.md`
-   - target `SKILL.md`
-   - `agents/openai.yaml`
+   - if the target skill already exists, read its `SKILL.md`
+   - if the target skill already exists and `agents/openai.yaml` is relevant, read it
    - only the specific references, scripts, or assets that matter
-3. Define the high-frequency core:
+3. For a new skill, do not assume a target `SKILL.md` already exists. Build from the user request, applicable `AGENTS.md`, and only the minimum local context needed to choose the shape.
+4. Define the high-frequency core:
    - trigger description
    - main workflow
    - read-when/skip-when routing
    - hard constraints and adjacent soft preferences
-4. If low-frequency detail appears better routed outside `SKILL.md`, treat that as a candidate structural expansion pattern and recommend it unless the user already asked for that kind of restructuring.
-5. Validate the folder after edits and refresh `agents/openai.yaml` if the UI metadata drifted.
+5. If low-frequency detail appears better routed outside `SKILL.md`, treat that as a candidate structural expansion pattern and recommend it unless the user already asked for that kind of restructuring.
+6. Validate the folder after edits and refresh `agents/openai.yaml` if the UI metadata drifted.
 
 ## Route The Work
 
@@ -121,7 +125,7 @@ Keep in `SKILL.md`:
 - invariants, edge-condition checks, and compact examples
 - the minimum context needed to choose the right branch
 
-If you are considering moving content into new `references/` files, treat that as an optional structural expansion pattern unless the user already asked for that restructuring or the existing reference surface must be kept in sync.
+If you are considering moving content into new `references/` files, treat that as an optional structural expansion pattern unless the user already asked for that restructuring or the existing reference surface must be kept in sync. Otherwise, surface it to the user as a recommendation instead of changing the file structure silently.
 
 Move to `references/` only when the content is real but colder:
 - variant-specific guidance
@@ -149,7 +153,7 @@ If none of those are true, you may recommend a local `AGENTS.md`, but do not cre
 
 If you identify candidate high-frequency routing rules or execution rules that might deserve lifting into local `AGENTS.md`, do not decide that unilaterally. Surface them to the user as candidates and let the user decide whether they should be lifted.
 
-When a skill grows beyond a single hot document and `AGENTS.md` is in play, use a local `AGENTS.md` as a routing index, not as a second full procedure.
+When a skill grows beyond a single hot document and `AGENTS.md` is already in scope or the user approved that structural expansion, use a local `AGENTS.md` as a routing index, not as a second full procedure.
 
 Use local `AGENTS.md` to:
 - declare the authoritative files
