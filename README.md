@@ -30,6 +30,7 @@ flowchart TD
 
 ```text
 skill-write-refactor/
+  AGENTS.md
   README.md
   README.zh-CN.md
   LICENSE
@@ -45,6 +46,7 @@ skill-write-refactor/
 
 - `SKILL.md`: the runtime design contract for skill authoring and refactoring
 - `agents/openai.yaml`: Codex UI metadata aligned to the skill trigger surface
+- `AGENTS.md`: repo-local read order and maintenance boundary for the packaged repository
 - `docs/USAGE.md`: installation steps, workflow order, and example prompts
 
 ## Core Design Ideas
@@ -169,6 +171,6 @@ See [docs/USAGE.md](./docs/USAGE.md) for the working order, example prompts, and
 
 ## Notes
 
-- The packaged skill intentionally stays single-file today because its hot path is still compact.
-- Local `AGENTS.md` is part of the method, but only when the document set actually needs routing support.
+- The packaged skill intentionally keeps `SKILL.md` as a single hot-path procedure file.
+- This repository includes a local `AGENTS.md` because the published package now has enough repo-level surface area to justify explicit read order and maintenance routing.
 - `agents/openai.yaml` should be refreshed whenever the trigger scope, tone, or default prompt changes.

@@ -24,6 +24,7 @@ Use the skill in this order:
 For a publishable repository, keep the packaging lightweight unless the skill itself already needs more structure.
 
 - Required:
+  - `AGENTS.md`
   - `SKILL.md`
   - `agents/openai.yaml`
   - `README.md`
@@ -32,7 +33,7 @@ For a publishable repository, keep the packaging lightweight unless the skill it
   - `LICENSE`
   - `.gitignore`
   - `docs/USAGE.md`
-- Add local `AGENTS.md` only when the skill has multiple routed files and stable read-order needs.
+- Add local `AGENTS.md` when the published package has enough maintained files that stable read-order and maintenance routing are worth making explicit.
 
 ## Example Prompts
 

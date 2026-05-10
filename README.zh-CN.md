@@ -30,6 +30,7 @@ flowchart TD
 
 ```text
 skill-write-refactor/
+  AGENTS.md
   README.md
   README.zh-CN.md
   LICENSE
@@ -45,6 +46,7 @@ skill-write-refactor/
 
 - `SKILL.md`：skill 编写与重构的运行时设计合同
 - `agents/openai.yaml`：与触发面保持一致的 Codex UI 元数据
+- `AGENTS.md`：已发布仓库的 repo-local 读取顺序与维护边界
 - `docs/USAGE.md`：安装步骤、工作顺序、示例提示词
 
 ## 核心设计思想
@@ -169,6 +171,6 @@ description 行和 `SKILL.md` 顶部本身就是注意力控制面：
 
 ## 说明
 
-- 当前打包版本保持单文件 skill，是因为它的热路径还足够紧凑。
-- local `AGENTS.md` 是这套方法的一部分，但只有在文档集合真的需要路由支持时才应引入。
+- 当前打包版本仍然把 `SKILL.md` 保持为单一热路径流程文件。
+- 这个仓库包含 local `AGENTS.md`，因为发布后的 repo-level 表面已经足够大，值得显式声明读取顺序和维护路由。
 - 只要 trigger scope、tone 或 default prompt 发生变化，就应该同步刷新 `agents/openai.yaml`。
