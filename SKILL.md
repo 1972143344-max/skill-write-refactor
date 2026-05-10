@@ -104,11 +104,14 @@ Use `assets/` only for output artifacts or templates, not for extra prose.
 
 Treat local `AGENTS.md` as an optional routing surface, not a default edit target.
 
+Recommend lifting content into local `AGENTS.md` only when that content needs to stay useful even for runs that do not explicitly invoke the skill.
+
 Use or update local `AGENTS.md` only when at least one of these is true:
 
 - the user explicitly wants `AGENTS.md` created, changed, or kept in sync
 - the skill directory already has a local `AGENTS.md` that serves as a routing/index surface and would become stale if the skill structure changes
 - the user explicitly wants an index-bearing control surface for a multi-file skill
+- some routing or operating guidance needs to be used frequently even when the skill itself is not explicitly invoked
 
 If none of those are true, you may recommend a local `AGENTS.md`, but do not create or modify it by default.
 
@@ -119,6 +122,7 @@ Use local `AGENTS.md` to:
 - define read order
 - describe read-when/skip-when decisions
 - point to summary headers or indexes for larger document sets
+- surface only the small set of high-frequency rules or routing pointers that should still help when the skill is not explicitly loaded
 
 Do not use local `AGENTS.md` to:
 - restate the full skill body
