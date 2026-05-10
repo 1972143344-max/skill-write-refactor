@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Write/Refactor"
+  short_description: "Write or refactor skills with lean routing-first structure."
+  default_prompt: "Use $skill-write-refactor to create or refactor a Codex skill with focused content, routing-first structure, and clean high-frequency/low-frequency splits."
